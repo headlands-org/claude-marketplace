@@ -1,0 +1,8 @@
+{
+  "name": "architect",
+  "description": "AI Architect & System Orchestrator for complex engineering projects with parallel execution and quality gates",
+  "version": "1.0.0",
+  "author": {
+    "name": "Headlands"
+  }
+}

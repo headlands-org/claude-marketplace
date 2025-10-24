@@ -1,0 +1,18 @@
+{
+  "name": "headlands-claude-marketplace",
+  "owner": {
+    "name": "Headlands"
+  },
+  "plugins": [
+    {
+      "name": "architect",
+      "source": "./architect",
+      "description": "AI Architect with 6-phase parallel execution planning and quality gates"
+    },
+    {
+      "name": "issuify",
+      "source": "./issuify",
+      "description": "Create GitHub issues and PRs with structured formatting via GitHub Copilot MCP"
+    }
+  ]
+}
