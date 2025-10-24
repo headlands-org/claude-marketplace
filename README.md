@@ -7,7 +7,7 @@ Public Claude Code plugins for development workflows and automation.
 ### Add the Marketplace
 
 ```bash
-/plugin marketplace add headlands-org/claude-marketplace
+/plugin marketplace add lloyd/claude-marketplace
 ```
 
 ### Install Plugins
@@ -103,7 +103,7 @@ You should see the new commands listed. Check MCP server connections:
 Clone the marketplace locally:
 
 ```bash
-git clone git@github.com:headlands-org/claude-marketplace.git
+git clone git@github.com:lloyd/claude-marketplace.git
 cd claude-marketplace
 ```
 
@@ -151,4 +151,4 @@ MIT License - see LICENSE file for details.
 
 ## Support
 
-Issues and questions: https://github.com/headlands-org/claude-marketplace/issues
+Issues and questions: https://github.com/lloyd/claude-marketplace/issues
