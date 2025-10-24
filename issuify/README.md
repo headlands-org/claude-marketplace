@@ -10,7 +10,7 @@ Create GitHub issues and pull requests with structured, concise formatting using
 
 ## Requirements
 
-- GitHub Copilot MCP server authentication
+- GitHub Personal Access Token (PAT) with `repo` scope
 - Active git repository with changes to document
 
 ## Usage
@@ -161,6 +161,19 @@ If you have multiple unrelated changes, create separate branches and run `/issui
 
 ## Configuration
 
+### GitHub Personal Access Token Setup
+
+The GitHub MCP server requires a Personal Access Token (PAT) because it doesn't support OAuth authentication correctly.
+
+1. Create a GitHub PAT at https://github.com/settings/tokens with `repo` scope
+2. Set the environment variable:
+   ```bash
+   export GITHUB_PERSONAL_ACCESS_TOKEN="your_token_here"
+   ```
+3. Add to your shell profile (~/.bashrc, ~/.zshrc, etc.) to persist across sessions
+
+### MCP Server Configuration
+
 MCP server configuration (included with plugin):
 
 ```json
@@ -168,13 +181,16 @@ MCP server configuration (included with plugin):
   "mcpServers": {
     "github": {
       "type": "http",
-      "url": "https://api.githubcopilot.com/mcp/"
+      "url": "https://api.githubcopilot.com/mcp/",
+      "env": {
+        "GITHUB_PERSONAL_ACCESS_TOKEN": "${GITHUB_PERSONAL_ACCESS_TOKEN}"
+      }
     }
   }
 }
 ```
 
-Authentication is handled automatically by GitHub Copilot.
+The plugin will automatically read `GITHUB_PERSONAL_ACCESS_TOKEN` from your environment.
 
 ## Workflow Integration
 
@@ -195,9 +211,9 @@ Customize the format by editing `commands/issuify.md` in your plugin fork to mat
 ## Troubleshooting
 
 **"MCP server not connected"**
-- Verify GitHub Copilot is authenticated
+- Verify `GITHUB_PERSONAL_ACCESS_TOKEN` is set in your environment
 - Check MCP server status in Claude Code settings
-- Restart Claude Code
+- Restart Claude Code after setting the environment variable
 
 **"No changes detected"**
 - Ensure you have uncommitted changes
