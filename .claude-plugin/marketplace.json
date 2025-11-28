@@ -13,6 +13,11 @@
       "name": "issuify",
       "source": "./issuify",
       "description": "Create GitHub issues and PRs with structured formatting via GitHub Copilot MCP"
+    },
+    {
+      "name": "apple",
+      "source": "./apple",
+      "description": "App Store Review Guidelines compliance checker with A-F grading"
     }
   ]
 }

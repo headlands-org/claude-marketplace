@@ -1,0 +1,8 @@
+{
+  "name": "apple",
+  "description": "iOS App Store Review Guidelines compliance checker with parallel analysis and A-F grading",
+  "version": "1.0.0",
+  "author": {
+    "name": "Headlands"
+  }
+}

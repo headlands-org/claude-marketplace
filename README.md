@@ -18,6 +18,9 @@ Public Claude Code plugins for development workflows and automation.
 
 # GitHub issue/PR automation
 /plugin install issuify@headlands-claude-marketplace
+
+# App Store Review Guidelines checker
+/plugin install apple@headlands-claude-marketplace
 ```
 
 ## Plugins
@@ -64,6 +67,29 @@ Create GitHub issues and pull requests with structured, concise formatting. Uses
 **Requirements:** GitHub Copilot MCP server authentication
 
 [Full documentation](./issuify/README.md)
+
+---
+
+### App Store Review Guidelines Compliance
+
+**Command:** `/apple review`
+
+Analyze iOS/macOS apps against Apple's App Store Review Guidelines. Produces a comprehensive A-F grading report with actionable feedback.
+
+**When to use:**
+- Before App Store submissions
+- After adding payments, subscriptions, or sensitive APIs
+- Post-rejection to identify issues
+- When targeting kids category
+
+**Key features:**
+- Fetches current Apple guidelines automatically
+- Parallel analysis across all 5 guideline sections
+- A-F grading with risk assessment
+- Priority fix list organized by severity
+- Privacy label compliance check
+
+[Full documentation](./apple/README.md)
 
 ---
 
