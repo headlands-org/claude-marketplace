@@ -7,7 +7,7 @@
     {
       "name": "architect",
       "source": "./architect",
-      "description": "AI Architect with 6-phase parallel execution planning and quality gates"
+      "description": "AI Architect with 7-phase workflow: parallel execution, quality gates, and independent code review validation"
     },
     {
       "name": "issuify",
