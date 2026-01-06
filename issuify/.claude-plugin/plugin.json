@@ -1,7 +1,7 @@
 {
   "name": "issuify",
   "description": "Create GitHub issues and pull requests with structured formatting using the GitHub Copilot MCP server",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "author": {
     "name": "Headlands"
   }
