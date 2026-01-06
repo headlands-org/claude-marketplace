@@ -2,11 +2,37 @@
 
 Review all changed files since upstream branch. Include work we're aware of. Ask about unexpected changes.
 
-Use the **GitHub Copilot MCP server** tools to create both the issue and PR:
-- `mcp__github__create_issue` - Create the GitHub issue
-- `mcp__github__create_pull_request` - Create the pull request
+## Step 1: Confirm GitHub access
 
-## Issue (what & why)
+Call `mcp__github__get_me` before anything else. This:
+1. Tests that authentication works
+2. Shows who you're authenticated as (ground truth for the user)
+3. If it fails, authentication isn't configured - see "In case of failure" below
+
+## Step 2: Understand the changes
+
+Review the diff and summarize what this work accomplishes. Identify key terms/concepts.
+
+## Step 3: Search for existing issues
+
+Use `mcp__github__search_issues` to find open issues that might relate to this work:
+- Search using key terms from the changes (component names, feature areas, bug descriptions)
+- Filter to open issues in this repo
+- Look for issues that this PR would fully or partially address
+
+**If related issues found:**
+- Show the user which issues look relevant (title + number)
+- Ask: "Should this PR close any of these issues?"
+- If yes → skip to Step 5, PR will reference "Closes #X, #Y"
+- If no → proceed to Step 4
+
+**If no related issues found:**
+- Proceed to Step 4
+
+## Step 4: Create an issue (if needed)
+
+Use `mcp__github__issue_write` with method "create"
+
 Write casual, precise language. No fluff. Focus on bottom line.
 
 - **Problem**: What's broken or missing (1-2 sentences max)
@@ -15,12 +41,18 @@ Write casual, precise language. No fluff. Focus on bottom line.
 
 Target 3-5 sentences total. Skip obvious details.
 
-## PR (how)
+## Step 5: Create the PR
+
+Use `mcp__github__create_pull_request`
+
+**Important:** Include "Closes #X" (or "Closes #X, #Y" for multiple) in the PR body to auto-link issues.
+
 Write casual, precise language. No frilly technical jargon.
 
 - **Summary**: What changed (2-3 bullets max, technical but simple)
 - **Why**: How it solves the issue (1 sentence linking back)
 - **Test**: What to check (2-3 bullets, just key things)
+- **Closes**: #issue_number (or multiple)
 
 Target 4-6 sentences total. Cut anything that doesn't add value.
 
@@ -32,34 +64,24 @@ Target 4-6 sentences total. Cut anything that doesn't add value.
 
 ## In case of failure
 
-If the github MCP server is not available, analyze why!
-
-Is it configured and present?
-
-Did the actual call error out is additional configuration required?
-
-Was there a `GITHUB_PERSONAL_ACCESS_TOKEN` set in the environment?  If not report -> 
+If `mcp__github__get_me` fails, report:
 
 ```
-GitHub Personal Access Token not found.
+GitHub authentication failed.
 
-The issuify plugin requires a GitHub PAT because the GitHub MCP server doesn't support OAuth.
+The issuify plugin requires a GitHub PAT configured in the GitHub MCP server.
 
 Setup instructions:
 
 1. Create a GitHub PAT at https://github.com/settings/tokens
    Required scope: repo
 
-2. Set the environment variable:
-   export GITHUB_PERSONAL_ACCESS_TOKEN="your_token_here"
+2. Configure the GitHub MCP server with your token
+   (see your Claude Code MCP settings)
 
-3. Add to your shell profile to persist across sessions:
-   echo 'export GITHUB_PERSONAL_ACCESS_TOKEN="your_token_here"' >> ~/.zshrc
-
-4. Restart Claude Code after setting the variable
+3. Restart Claude Code after configuring
 
 Then run /issuify again.
 ```
 
-
-
+Do NOT try to check environment variables via bash - the sandbox doesn't inherit shell env vars.
